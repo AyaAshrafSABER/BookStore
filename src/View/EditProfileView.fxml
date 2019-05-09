@@ -16,7 +16,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditProfileController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="508.0"
+            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="Controller.EditProfileController">
     <center>
         <VBox prefHeight="197.0" prefWidth="508.0" BorderPane.alignment="CENTER">
             <children>
@@ -128,7 +129,8 @@
          <right>
                 <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="62.0" textOverrun="CLIP" BorderPane.alignment="CENTER">
                <graphic>
-                        <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                   <ImageView fitHeight="44.0" fitWidth="59.0" onMouseClicked="#Controller" pickOnBounds="true"
+                              preserveRatio="true">
                             <image>
                                 <Image url="@../res/done.png" />
                             </image>
