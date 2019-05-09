@@ -3,6 +3,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import Controller.DbConnect;
+
 public class Main extends Application {
     private static final String  PROFILE = "View/ProfileView.fxml";
     private static final String  EDIT_PROFILE = "View/EditProfileView.fxml";
@@ -21,8 +23,8 @@ public class Main extends Application {
 
     }
 
-
     public static void main(String[] args) {
+        DbConnect connect = DbConnect.getInstance("BookStore");
         launch(args);
     }
 }
