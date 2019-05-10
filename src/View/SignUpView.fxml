@@ -126,7 +126,8 @@
     <bottom>
         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <right>
-                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="62.0" textOverrun="CLIP" BorderPane.alignment="CENTER">
+                <Button fx:id="signUp" alignment="CENTER" mnemonicParsing="false" onAction="#signup" prefHeight="50.0"
+                        prefWidth="62.0" textOverrun="CLIP" BorderPane.alignment="CENTER">
                     <graphic>
                         <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -166,7 +167,8 @@
                         </Label>
                         <TextField layoutX="251.0" layoutY="14.0" />
                         <ComboBox layoutX="74.0" layoutY="58.0" prefWidth="150.0" />
-                        <Button layoutX="414.0" layoutY="14.0" mnemonicParsing="false" text="+" />
+                        <Button fx:id="add" layoutX="414.0" layoutY="14.0" mnemonicParsing="false"
+                                onAction="#addAddress" text="+"/>
                         <Button layoutX="450.0" layoutY="14.0" mnemonicParsing="false" text="Delete" />
                     </children>
                 </AnchorPane>

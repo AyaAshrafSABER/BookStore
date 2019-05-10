@@ -57,8 +57,9 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField prefHeight="17.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                   <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                   <TextField fx:id="lastName" prefHeight="17.0" prefWidth="152.0" GridPane.columnIndex="1"
+                              GridPane.rowIndex="3"/>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="First Name" textAlignment="CENTER" GridPane.rowIndex="2">
                             <padding>
                                 <Insets left="50.0" />
@@ -81,7 +82,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                   <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Email" textAlignment="CENTER" GridPane.rowIndex="4">
                             <padding>
                                 <Insets left="50.0" />
@@ -93,7 +94,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                   <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Phone Number" textAlignment="CENTER" GridPane.rowIndex="5">
                             <padding>
                                 <Insets left="50.0" />
@@ -105,7 +106,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                   <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
@@ -127,10 +128,10 @@
    <bottom>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <right>
-                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="62.0" textOverrun="CLIP" BorderPane.alignment="CENTER">
+             <Button fx:id="submit" alignment="CENTER" mnemonicParsing="false" onAction="#submitEdit" prefHeight="50.0"
+                     prefWidth="62.0" textOverrun="CLIP" BorderPane.alignment="CENTER">
                <graphic>
-                   <ImageView fitHeight="44.0" fitWidth="59.0" onMouseClicked="#Controller" pickOnBounds="true"
-                              preserveRatio="true">
+                   <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../res/done.png" />
                             </image>
@@ -166,9 +167,10 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                  <TextField layoutX="251.0" layoutY="14.0" />
-                  <ComboBox layoutX="74.0" layoutY="58.0" prefWidth="150.0" />
-                  <Button layoutX="414.0" layoutY="14.0" mnemonicParsing="false" text="+" />
+                   <TextField fx:id="address" layoutX="251.0" layoutY="14.0"/>
+                   <ComboBox fx:id="shipAddress" layoutX="74.0" layoutY="58.0" prefWidth="150.0"/>
+                   <Button fx:id="add" layoutX="414.0" layoutY="14.0" mnemonicParsing="false" onAction="#addToAddresses"
+                           text="+"/>
                   <Button layoutX="450.0" layoutY="14.0" mnemonicParsing="false" text="Delete" />
                </children>
             </AnchorPane>
