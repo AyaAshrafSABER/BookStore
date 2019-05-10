@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="515.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="Controller.HomePageController">
+    <top>
+        <HBox prefHeight="54.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+            <children>
+                <ToolBar prefHeight="57.0" prefWidth="742.0">
+                    <items>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../res/architecture-and-city.png"/>
+                            </image>
+                        </ImageView>
+                        <TextField prefHeight="25.0" prefWidth="293.0"/>
+                        <Button mnemonicParsing="false">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../res/search.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Region prefHeight="44.0" prefWidth="5.0"/>
+                        <Label prefHeight="17.0" prefWidth="78.0" text="User Name"/>
+                        <Button mnemonicParsing="false">
+                            <graphic>
+                                <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../res/goods.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="login" mnemonicParsing="false" prefHeight="34.0" prefWidth="11.0">
+                            <graphic>
+                                <ImageView fitHeight="29.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../res/exit.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </items>
+                </ToolBar>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <VBox alignment="CENTER" prefHeight="341.0" prefWidth="200.0">
+                    <children>
+                        <CheckBox alignment="TOP_LEFT" mnemonicParsing="false" text="Advanced Search">
+                            <font>
+                                <Font name="Verdana Bold Italic" size="18.0"/>
+                            </font>
+                        </CheckBox>
+                        <VBox prefHeight="427.0" prefWidth="314.0" spacing="5.0">
+                            <children>
+                                <Label text="Category">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <ChoiceBox fx:id="categories" prefHeight="26.0" prefWidth="166.0"/>
+                                <Label text="ISBN">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="isbn"/>
+                                <Label text="Publisher">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="publisherName"/>
+                                <Label text="Publication Year">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="publicationYear"/>
+                                <Label text="Price">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="price"/>
+                                <Label text="Author">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="authorName"/>
+                                <ListView prefHeight="57.0" prefWidth="177.0"/>
+                                <Pane prefHeight="0.0" prefWidth="168.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#addAuthor" prefHeight="31.0"
+                                                prefWidth="42.0">
+                                            <font>
+                                                <Font size="15.0"/>
+                                            </font>
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../res/more.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button layoutX="80.0" mnemonicParsing="false" onAction="#deleteAuthor"
+                                                prefHeight="32.0" prefWidth="37.0">
+                                            <font>
+                                                <Font size="15.0"/>
+                                            </font>
+                                            <graphic>
+                                                <ImageView fitHeight="30.0" fitWidth="46.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../res/trash.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                    <opaqueInsets>
+                                        <Insets bottom="20.0"/>
+                                    </opaqueInsets>
+                                </Pane>
+                            </children>
+                            <opaqueInsets>
+                                <Insets bottom="20.0" left="20.0" right="20.0"/>
+                            </opaqueInsets>
+                            <padding>
+                                <Insets bottom="20.0"/>
+                            </padding>
+                        </VBox>
+                    </children>
+                    <opaqueInsets>
+                        <Insets left="20.0" right="20.0"/>
+                    </opaqueInsets>
+                    <padding>
+                        <Insets left="20.0" right="20.0"/>
+                    </padding>
+                </VBox>
+                <VBox prefHeight="433.0" prefWidth="296.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="306.0"
+                               text="Search Result" VBox.vgrow="SOMETIMES">
+                            <font>
+                                <Font name="Verdana Bold Italic" size="18.0"/>
+                            </font>
+                        </Label>
+                        <Region prefHeight="21.0" prefWidth="296.0"/>
+                        <TableView VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="ISBN "/>
+                                <TableColumn prefWidth="75.0" text="Title"/>
+                                <TableColumn prefWidth="75.0" text="Category"/>
+                                <TableColumn prefWidth="75.0" text="Price"/>
+                            </columns>
+                        </TableView>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Region prefHeight="77.0" prefWidth="201.0"/>
+                                <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                        text="Load More">
+                                    <HBox.margin>
+                                        <Insets top="20.0"/>
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>
