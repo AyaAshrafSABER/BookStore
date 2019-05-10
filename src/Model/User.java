@@ -26,6 +26,12 @@ public class User {
     @MapToData(columnPrefix = "phoneNumber")
     private String phoneNumber;
     private List<String> shippingAddress;
+    private boolean privilege;
+    private shoppingCart shoppingCart;
+
+    public Model.shoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
 
     public static User getUser() {
         return user;
@@ -40,7 +46,7 @@ public class User {
     }
 
     public User loginUser(String userName, String password) {
-        DbConnect connect = DbConnect.getInstance("BookStore");
+        DbConnect connect = DbConnect.getInstance();
         String query = "{CALL authenticateUser(?,?)}";
         try {
             CallableStatement statement = connect.getConnection().prepareCall(query);
@@ -112,5 +118,9 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public boolean isPrivilege() {
+        return privilege;
     }
 }

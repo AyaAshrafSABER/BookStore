@@ -23,6 +23,25 @@ public class book {
     @MapToData(columnPrefix = "category")
     private String category;
 
+    private int quantity;
+    private int threshold;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
+    }
+
 
     public String getBookId() {
         return bookId;

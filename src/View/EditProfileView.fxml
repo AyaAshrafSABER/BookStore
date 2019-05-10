@@ -35,17 +35,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="User Name" textAlignment="CENTER">
-                            <padding>
-                                <Insets left="50.0" />
-                            </padding>
-                            <font>
-                                <Font name="Meiryo UI" size="18.0" />
-                            </font>
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets></Label>
-                        <TextField id="UserNameEditField" alignment="CENTER" GridPane.columnIndex="1" />
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Password" textAlignment="CENTER" GridPane.rowIndex="1">
                             <padding>
                                 <Insets left="50.0" />
