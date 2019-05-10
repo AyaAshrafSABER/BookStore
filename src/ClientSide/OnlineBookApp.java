@@ -27,7 +27,7 @@ public class OnlineBookApp extends Application {
 
 
     public static void main(String[] args) {
-        DbConnect connect = DbConnect.getInstance("BookStore");
+        DbConnect connect = DbConnect.getInstance();
         launch(args);
     }
 }

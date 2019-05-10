@@ -8,6 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
+
 public class BookController {
 
     @FXML
@@ -30,6 +35,12 @@ public class BookController {
     private Button addToCart;
     @FXML
     private Button edit;
+    @FXML // ResourceBundle that was given to the FXMLLoader
+    private ResourceBundle resources;
+
+    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    private URL location;
+
 
     public void initialize() {
         if (!User.getUser().isPrivilege()) {
@@ -37,6 +48,7 @@ public class BookController {
             edit.setVisible(false);
         }
     }
+
 
     public void initBookData(book book) {
         isbn.setText(book.getBookId());
@@ -58,3 +70,5 @@ public class BookController {
     public void editBook(ActionEvent actionEvent) {
     }
 }
+
+

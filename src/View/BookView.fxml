@@ -36,11 +36,11 @@
                         </Label>
                         <Region prefHeight="47.0" prefWidth="70.0"/>
                         <Label prefHeight="17.0" prefWidth="78.0" text="User Name"/>
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="50.0">
                             <graphic>
-                                <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="31.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../res/shopping-cart.png"/>
+                                        <Image url="@../res/goods.png"/>
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -60,7 +60,7 @@
         </VBox>
     </top>
     <center>
-        <GridPane prefHeight="287.0" prefWidth="467.0" BorderPane.alignment="CENTER">
+        <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -95,7 +95,7 @@
                         <Font name="Meiryo UI" size="18.0"/>
                     </font>
                 </Label>
-                <Label text="Selling Price" GridPane.rowIndex="5">
+                <Label text="Available Countity" GridPane.rowIndex="5">
                     <font>
                         <Font name="Meiryo UI" size="18.0"/>
                     </font>
@@ -105,12 +105,12 @@
                         <Font name="Meiryo UI" size="18.0"/>
                     </font>
                 </Label>
-                <Label fx:id="isbn" text="Label" GridPane.columnIndex="1"/>
-                <Label fx:id="title" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <Label fx:id="publisher" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Label fx:id="publicationYear" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                <Label fx:id="price" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-                <Label fx:id="category" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                <Label text="Label" GridPane.columnIndex="1"/>
+                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
                 <Label text="Authors" GridPane.rowIndex="3">
                     <font>
                         <Font name="Meiryo UI" size="18.0"/>
@@ -126,32 +126,22 @@
     <right>
         <VBox alignment="CENTER" prefHeight="311.0" prefWidth="133.0" BorderPane.alignment="CENTER">
             <children>
-                <Region prefHeight="20.0" prefWidth="200.0"/>
-                <Label text="available">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="26.0" layoutY="16.0" text="Quantity">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Region layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="200.0"/>
-                <Label fx:id="availableQuantity" prefWidth="50.0" text="Label" textAlignment="CENTER">
-                    <VBox.margin>
-                        <Insets left="20.0" right="20.0"/>
-                    </VBox.margin>
-                </Label>
-                <Region prefHeight="60.0" prefWidth="102.0"/>
+                <ImageView fitHeight="69.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../res/money-bag.png"/>
+                    </image>
+                </ImageView>
+                <Region layoutX="10.0" layoutY="96.0" prefHeight="28.0" prefWidth="113.0"/>
+                <Label prefHeight="17.0" prefWidth="36.0" text="Label"/>
+                <Region prefHeight="68.0" prefWidth="113.0"/>
                 <Label text="Quantity ">
                     <font>
                         <Font name="Sitka Small Bold" size="18.0"/>
                     </font>
                 </Label>
-                <Region layoutX="10.0" layoutY="214.0" prefHeight="40.0" prefWidth="123.0"/>
-                <TextField fx:id="requestedQuantity" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT"
-                           prefHeight="34.0" prefWidth="123.0">
+                <Region layoutX="10.0" layoutY="214.0" prefHeight="24.0" prefWidth="123.0"/>
+                <Region layoutX="10.0" layoutY="26.0" prefHeight="17.0" prefWidth="102.0"/>
+                <TextField alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="34.0" prefWidth="123.0">
                     <opaqueInsets>
                         <Insets left="10.0" right="10.0"/>
                     </opaqueInsets>
@@ -160,14 +150,13 @@
                     </VBox.margin>
                 </TextField>
                 <Region layoutX="10.0" layoutY="270.0" prefHeight="34.0" prefWidth="102.0"/>
-                <ImageView fitHeight="46.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="57.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../res/shopping-cart.png"/>
+                        <Image url="@../res/add-to-cart.png"/>
                     </image>
                 </ImageView>
                 <Region prefHeight="7.0" prefWidth="123.0"/>
-                <Button fx:id="addtoCart" mnemonicParsing="false" onAction="#addToCart" prefHeight="27.0"
-                        prefWidth="119.0" text="ADD TO Cart">
+                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="119.0" text="ADD TO Cart">
                     <font>
                         <Font name="Sitka Small" size="14.0"/>
                     </font>
@@ -182,11 +171,4 @@
             </padding>
         </VBox>
     </right>
-    <bottom>
-        <Button fx:id="edit" mnemonicParsing="false" onAction="#editBook" text="Edit" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets bottom="20.0"/>
-            </BorderPane.margin>
-        </Button>
-    </bottom>
 </BorderPane>

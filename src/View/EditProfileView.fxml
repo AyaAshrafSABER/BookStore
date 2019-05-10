@@ -120,7 +120,8 @@
              <Button fx:id="submit" alignment="CENTER" mnemonicParsing="false" onAction="#submitEdit" prefHeight="50.0"
                      prefWidth="62.0" textOverrun="CLIP" BorderPane.alignment="CENTER">
                <graphic>
-                   <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                   <ImageView fx:id="submit" fitHeight="44.0" fitWidth="59.0" onDragDetected="#submitEdit"
+                              pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../res/done.png" />
                             </image>
