@@ -6,9 +6,57 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Controller.CheckOutController"
             prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+    <top>
+        <HBox prefHeight="54.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+            <children>
+                <ToolBar prefHeight="57.0" prefWidth="676.0">
+                    <items>
+                        <ImageView fitHeight="36.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../res/open-book.png" />
+                            </image>
+                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="325.0" text="Promote Users" textOverrun="WORD_ELLIPSIS">
+                            <font>
+                                <Font name="Sitka Small" size="40.0" />
+                            </font>
+                        </Label>
+                        <Label prefHeight="17.0" prefWidth="78.0" text="User Name" />
+                        <Button mnemonicParsing="false">
+                            <graphic>
+                                <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../res/shopping-cart.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="11.0">
+                            <graphic>
+                                <ImageView fitHeight="29.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../res/left-arrow.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </items>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <HBox.margin>
+                        <Insets bottom="20.0" />
+                    </HBox.margin>
+                </ToolBar>
+            </children>
+        </HBox>
+    </top>
+</BorderPane>

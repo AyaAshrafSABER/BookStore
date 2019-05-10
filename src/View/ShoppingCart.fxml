@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -19,12 +20,12 @@
             <children>
                 <ToolBar prefHeight="57.0" prefWidth="600.0">
                     <items>
-                        <ImageView fitHeight="36.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="41.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../res/open-book.png" />
+                                <Image url="@../res/goods.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="325.0" text="Shopping Cart" textOverrun="WORD_ELLIPSIS">
+                        <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="293.0" text="Shopping Cart" textOverrun="WORD_ELLIPSIS">
                             <font>
                                 <Font name="Sitka Small" size="40.0" />
                             </font>
@@ -39,6 +40,15 @@
                                 </ImageView>
                             </graphic>
                         </Button>
+                  <Button mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="43.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../res/exit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                     </items>
                     <opaqueInsets>
                         <Insets />
@@ -51,17 +61,36 @@
         </HBox>
     </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView prefHeight="323.0" prefWidth="326.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="Item " />
-          <TableColumn prefWidth="75.0" text="Price " />
-            <TableColumn prefWidth="75.0" text="Quintity " />
-            <TableColumn prefWidth="75.0" text="Total Price " />
+          <TableColumn prefWidth="146.0" text="Item " />
+          <TableColumn prefWidth="123.0" text="Price " />
+            <TableColumn prefWidth="97.0" text="Quintity " />
+            <TableColumn prefWidth="133.0" text="Total Price " />
         </columns>
       </TableView>
    </center>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="81.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/money.png" />
+               </image>
+            </ImageView>
+            <Label text="Label" />
+            <Region prefHeight="74.0" prefWidth="100.0" />
+            <ImageView fitHeight="79.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/credit-card%20(1).png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" text="Check Out" />
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </VBox>
    </right>
 
 </BorderPane>
