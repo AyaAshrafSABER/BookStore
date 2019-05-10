@@ -16,8 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookController">
    <top>
       <VBox prefHeight="89.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -35,11 +34,11 @@
                   </Label>
                   <Region prefHeight="47.0" prefWidth="70.0" />
                   <Label prefHeight="17.0" prefWidth="78.0" text="User Name" />
-                  <Button mnemonicParsing="false">
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="50.0">
                      <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="31.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../res/shopping-cart.png" />
+                              <Image url="@../res/goods.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -94,7 +93,7 @@
                   <Font name="Meiryo UI" size="18.0" />
                </font>
             </Label>
-            <Label text="Selling Price" GridPane.rowIndex="5">
+            <Label text="Available Countity" GridPane.rowIndex="5">
                <font>
                   <Font name="Meiryo UI" size="18.0" />
                </font>
@@ -125,7 +124,14 @@
    <right>
       <VBox alignment="CENTER" prefHeight="311.0" prefWidth="133.0" BorderPane.alignment="CENTER">
          <children>
-            <Region prefHeight="174.0" prefWidth="102.0" />
+            <ImageView fitHeight="69.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/money-bag.png" />
+               </image>
+            </ImageView>
+            <Region layoutX="10.0" layoutY="96.0" prefHeight="28.0" prefWidth="113.0" />
+            <Label prefHeight="17.0" prefWidth="36.0" text="Label" />
+            <Region prefHeight="68.0" prefWidth="113.0" />
             <Label text="Quantity ">
                <font>
                   <Font name="Sitka Small Bold" size="18.0" />
@@ -142,9 +148,9 @@
                </VBox.margin>
             </TextField>
             <Region layoutX="10.0" layoutY="270.0" prefHeight="34.0" prefWidth="102.0" />
-            <ImageView fitHeight="46.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../res/shopping-cart.png" />
+                  <Image url="@../res/add-to-cart.png" />
                </image>
             </ImageView>
             <Region prefHeight="7.0" prefWidth="123.0" />
