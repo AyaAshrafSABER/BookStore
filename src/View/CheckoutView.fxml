@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CheckOutController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CheckOutController">
     <top>
         <HBox prefHeight="54.0" prefWidth="640.0" BorderPane.alignment="CENTER">
             <children>
@@ -27,7 +27,7 @@
                     <items>
                         <ImageView fitHeight="36.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../res/open-book.png" />
+                                <Image url="@../res/credit-card.png" />
                             </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="264.0" text="Check Out " textOverrun="WORD_ELLIPSIS">
