@@ -120,8 +120,8 @@
              <Button fx:id="submit" alignment="CENTER" mnemonicParsing="false" onAction="#submitEdit" prefHeight="50.0"
                      prefWidth="62.0" textOverrun="CLIP" BorderPane.alignment="CENTER">
                <graphic>
-                   <ImageView fx:id="submit" fitHeight="44.0" fitWidth="59.0" onDragDetected="#submitEdit"
-                              pickOnBounds="true" preserveRatio="true">
+                   <ImageView fitHeight="44.0" fitWidth="59.0" onDragDetected="#submitEdit" pickOnBounds="true"
+                              preserveRatio="true">
                             <image>
                                 <Image url="@../res/done.png" />
                             </image>
@@ -133,7 +133,8 @@
                 </Button>
          </right>
          <left>
-                <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="34.0" prefWidth="51.0" textFill="#f80505" BorderPane.alignment="CENTER">
+             <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#goToHome" prefHeight="34.0"
+                     prefWidth="51.0" textFill="#f80505" BorderPane.alignment="CENTER">
                     <graphic>
                         <ImageView fitHeight="42.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -157,7 +158,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                   <TextField fx:id="address" layoutX="251.0" layoutY="14.0"/>
+                   <TextField fx:id="newAddress" layoutX="251.0" layoutY="14.0"/>
                    <ComboBox fx:id="shipAddress" layoutX="74.0" layoutY="58.0" prefWidth="150.0"/>
                    <Button fx:id="add" layoutX="414.0" layoutY="14.0" mnemonicParsing="false" onAction="#addToAddresses"
                            text="+"/>

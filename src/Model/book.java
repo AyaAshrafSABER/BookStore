@@ -5,8 +5,9 @@ import net.sf.resultsetmapper.MapToData;
 
 public class book {
 
+
     @MapToData(columnPrefix = "ISBN")
-    private String bookId;
+    private int bookId;
 
     @MapToData(columnPrefix = "title")
     private String title;
@@ -43,11 +44,11 @@ public class book {
     }
 
 
-    public String getBookId() {
+    public int getIsbn() {
         return bookId;
     }
 
-    public void setBookId(String bookId) {
+    public void setBookId(int bookId) {
         this.bookId = bookId;
     }
 

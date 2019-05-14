@@ -18,7 +18,8 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="User Name" textAlignment="CENTER">
+                   <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" text="User Name"
+                          textAlignment="CENTER">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -40,7 +41,8 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="First Name" textAlignment="CENTER">
+                   <Label fx:id="firstName" alignment="CENTER" contentDisplay="CENTER" text="First Name"
+                          textAlignment="CENTER">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -57,7 +59,8 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Last Name" textAlignment="CENTER">
+                   <Label fx:id="lastName" alignment="CENTER" contentDisplay="CENTER" text="Last Name"
+                          textAlignment="CENTER">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -74,7 +77,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="292.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Email" textAlignment="CENTER">
+                   <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" text="Email" textAlignment="CENTER">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -91,7 +94,8 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Phone Number" textAlignment="CENTER">
+                   <Label fx:id="phoneNumber" alignment="CENTER" contentDisplay="CENTER" text="Phone Number"
+                          textAlignment="CENTER">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -120,7 +124,7 @@
                      </opaqueInsets>
                   </Label>
                   <Region prefHeight="65.0" prefWidth="27.0" />
-                  <ListView disable="true" prefHeight="65.0" prefWidth="125.0">
+                   <ListView fx:id="shipAddress" disable="true" prefHeight="65.0" prefWidth="125.0">
                      <padding>
                         <Insets bottom="20.0" />
                      </padding></ListView>
@@ -135,7 +139,8 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="34.0" prefWidth="51.0" textFill="#f80505">
+             <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#goHome" prefHeight="34.0"
+                     prefWidth="51.0" textFill="#f80505">
                <HBox.margin>
                   <Insets bottom="10.0" left="20.0" />
                </HBox.margin>
@@ -147,14 +152,14 @@
                   </ImageView>
                </graphic></Button>
             <Region prefHeight="50.0" prefWidth="236.0" />
-            <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#editProfile" prefHeight="50.0"
-                    prefWidth="62.0" textOverrun="CLIP">
+             <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#editProfile" prefHeight="50.0"
+                     prefWidth="62.0" textOverrun="CLIP">
                <HBox.margin>
                   <Insets bottom="10.0" right="20.0" />
                </HBox.margin>
                <graphic>
-                  <ImageView fx:id="edit" fitHeight="36.0" fitWidth="44.0" onDragDetected="#editProfile"
-                             pickOnBounds="true" preserveRatio="true">
+                   <ImageView fitHeight="36.0" fitWidth="44.0" onDragDetected="#editProfile" pickOnBounds="true"
+                              preserveRatio="true">
                      <image>
                         <Image url="@../res/Edit.png" />
                      </image>

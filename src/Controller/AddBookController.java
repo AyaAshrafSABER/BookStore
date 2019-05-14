@@ -1,22 +1,194 @@
 
 package Controller;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import Model.User;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 
 public class AddBookController {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+    DbConnect connect = DbConnect.getInstance();
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    private Label userName;
+    @FXML
+    private TextField ISBN;
+    @FXML
+    private TextField Title;
+    @FXML
+    private TextField Price;
+    @FXML
+    private TextField threshold;
+    @FXML
+    private TextField copies;
+    @FXML
+    private ComboBox<String> category;
+    @FXML
+    private TextField publicationYear;
+    @FXML
+    private TextField publisherName;
+    @FXML
+    private ComboBox<String> allPublisher;
+    @FXML
+    private ComboBox<String> allAuthors;
+    @FXML
+    private TextField publisherAdress;
+    @FXML
+    private TextField publisherPhone;
+    @FXML
+    private ListView<String> authors;
 
+    private Map<String, Integer> authorsMap;
+    private Map<String, Integer> publisherMap;
+    private List<String> authorsList;
+    private List<String> publisherList;
+
+    @FXML
+    public void initialize() {
+
+
+        getAuthors();
+        getPublishers();
+        userName.setText(User.getUser().getUserName());
+        category.setItems(FXCollections.observableArrayList("Science", "Art", "Geography", "History", "Religion"));
+
+    }
+
+    private void getPublishers() {
+
+        String query = "{CALL getPublishers()}";
+        try {
+            ResultSet set = connect.getDataProcedure(connect.getConnection().prepareCall(query));
+            while (set.next()) {
+                publisherMap.put(set.getString(2), set.getInt(1));
+                publisherList.add(set.getString(2));
+            }
+            allPublisher.setItems(FXCollections.observableArrayList(publisherList));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void getAuthors() {
+        String query = "{CALL getAuthors()}";
+        try {
+            ResultSet set = connect.getDataProcedure(connect.getConnection().prepareCall(query));
+            while (set.next()) {
+                authorsMap.put(set.getString(2), set.getInt(1));
+                authorsList.add(set.getString(2));
+            }
+            allAuthors.setItems(FXCollections.observableArrayList(authorsList));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void add(ActionEvent actionEvent) {
+        DbConnect connect = DbConnect.getInstance();
+        String query = "{CALL insertToBook(?,?,?,?,?,?,?)}";
+        String authorquery = "{CALL insertToAuthors(?,?)}";
+        try {
+            connect.getConnection().setAutoCommit(false);
+//            CallableStatement statement3 = connect.getConnection().prepareCall(publisherquery);
+//            statement3.setString(1, publisherName.getText());
+//            statement3.setString(2, publisherAdress.getText());
+//            statement3.setString(3, publisherPhone.getText());
+//            statement3.executeQuery();
+
+
+            CallableStatement statement = connect.getConnection().prepareCall(query);
+            statement.setString(1, Title.getText());
+            int publisherId = publisherMap.get(allPublisher.getSelectionModel().getSelectedItem());
+            statement.setInt(2, publisherId);
+            statement.setInt(4, Integer.parseInt(publicationYear.getText()));
+            statement.setInt(5, Integer.parseInt(Price.getText()));
+            statement.setString(6, category.getSelectionModel().getSelectedItem());
+            statement.setInt(7, Integer.parseInt(threshold.getText()));
+            statement.setInt(7, Integer.parseInt(copies.getText()));
+            ResultSet set = statement.executeQuery();
+            int bookId = -1;
+            while (set.next()) bookId = set.getInt(1);
+
+            if (bookId != -1) {
+                CallableStatement statement2 = connect.getConnection().prepareCall(authorquery);
+                for (String s : allAuthors.getItems()) {
+                    statement2.setInt(1, bookId);
+                    statement2.setString(2, s);
+                    ResultSet set2 = statement2.executeQuery();
+                }
+            }
+
+            connect.getConnection().commit();
+            Navigate.goToPage("../View/HomePageView.fxml", actionEvent, getClass());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                connect.getConnection().rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connect.getConnection().setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public void addAuthor(ActionEvent actionEvent) {
+
+        String string = allAuthors.getSelectionModel().getSelectedItem();
+        if (!authors.getItems().contains(string))
+            authors.getItems().add(string);
+
+    }
+
+    public void deleteAuthor(ActionEvent actionEvent) {
+
+        String string = allAuthors.getSelectionModel().getSelectedItem();
+        if (authors.getItems().contains(string))
+            authors.getItems().remove(string);
+    }
+
+
+    public void goToShoppingCart(ActionEvent actionEvent) throws IOException {
+
+        Navigate.goToPage("../View/ShoppingCart.fxml", actionEvent, getClass());
+
+    }
+
+    public void goHome(ActionEvent actionEvent) throws IOException {
+
+        Navigate.goToPage("../View/HomePageView.fxml", actionEvent, getClass());
+
+    }
+
+    public void addNewPubliher(ActionEvent actionEvent) {
+    }
+
+    public void addNewAuthor(ActionEvent actionEvent) {
     }
 }

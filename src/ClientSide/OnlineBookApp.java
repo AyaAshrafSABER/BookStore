@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import Controller.DbConnect;
 
 public class OnlineBookApp extends Application {
-    private static final String PROFILE = "../View/ProfileView.fxml";
+    private static final String PROFILE = "../View/HomePageView.fxml";
     private static final String EDIT_PROFILE = "../View/EditProfileView.fxml";
 
     @Override
@@ -18,7 +18,7 @@ public class OnlineBookApp extends Application {
         //     primaryStage.setScene(new Scene(root, 400, 600));
 
         Parent edit = FXMLLoader.load(getClass().getResource(PROFILE));
-        Scene scene = new Scene(edit, 400, 600);
+        Scene scene = new Scene(edit);
         primaryStage.setScene(scene);
         // scene.getStylesheets().add(getClass().getResource("View/DarkTheme.css").toExternalForm());
         primaryStage.show();

@@ -6,7 +6,7 @@ public class DbConnect {
 
     private static DbConnect connect;
     private static String userName = "root";
-    private static String password = "namanemo1812_";
+    private static String password = "Password123";
 
     private DbConnect() {
         try {

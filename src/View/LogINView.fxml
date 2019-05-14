@@ -17,7 +17,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LogInController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="Controller.LogInController">
    <center>
       <GridPane prefHeight="282.0" prefWidth="468.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -31,19 +32,20 @@
             <RowConstraints maxHeight="225.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
         </rowConstraints>
          <children>
-             <PasswordField prefHeight="25.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-             <Label text="Password" GridPane.rowIndex="1">
-                 <font>
-                     <Font name="Meiryo UI" size="14.0"/>
-                 </font>
-             </Label>
+             <TextField fx:id="userName" alignment="CENTER" cache="true" cacheHint="ROTATE" prefHeight="25.0"
+                        prefWidth="243.0" GridPane.columnIndex="1"/>
+             <PasswordField fx:id="password" prefHeight="25.0" prefWidth="245.0" GridPane.columnIndex="1"
+                            GridPane.rowIndex="1"/>
              <Label alignment="CENTER" text="User Name ">
                  <font>
                      <Font name="Meiryo UI" size="14.0"/>
                  </font>
              </Label>
-             <TextField alignment="CENTER" cache="true" cacheHint="ROTATE" prefHeight="25.0" prefWidth="243.0"
-                        GridPane.columnIndex="1"/>
+             <Label text="Password" GridPane.rowIndex="1">
+                 <font>
+                     <Font name="Meiryo UI" size="14.0"/>
+                 </font>
+             </Label>
          </children>
          <cursor>
             <Cursor fx:constant="V_RESIZE" />
@@ -56,12 +58,13 @@
    <bottom>
        <VBox alignment="TOP_CENTER" prefHeight="121.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Log in " VBox.vgrow="ALWAYS">
+             <Button fx:id="submit" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="69.0"
+                     text="Log in " VBox.vgrow="ALWAYS">
                  <font>
                      <Font name="Meiryo UI" size="14.0"/>
                  </font>
              </Button>
-             <Hyperlink text="Don’t have an account? Sign up"/>
+             <Hyperlink onAction="#signUp" text="Don’t have an account? Sign up"/>
          </children>
       </VBox>
    </bottom>

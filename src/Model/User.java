@@ -2,39 +2,85 @@ package Model;
 
 import Controller.DbConnect;
 import net.sf.resultsetmapper.MapToData;
-import net.sf.resultsetmapper.ReflectionResultSetMapper;
-import net.sf.resultsetmapper.ResultSetMapper;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
 
     private static User user;
-    @MapToData(columnPrefix = "userName")
-    private String userName;
-    @MapToData(columnPrefix = "password")
-    private String password;
-    @MapToData(columnPrefix = "firstName")
-    private String firstName;
-    @MapToData(columnPrefix = "lastName")
-    private String lastName;
-    @MapToData(columnPrefix = "email")
-    private String email;
-    @MapToData(columnPrefix = "phoneNumber")
-    private String phoneNumber;
-    private List<String> shippingAddress;
-    private boolean privilege;
-    private shoppingCart shoppingCart;
 
-    public Model.shoppingCart getShoppingCart() {
-        return shoppingCart;
+    private static int userId;
+    private static List<String> shippingAddress;
+    private static boolean privilege;
+    private String userName;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private static List<shoppingCartItem> shoppingCart;
+    private String phoneNum;
+
+    public static int getUserId() {
+        return userId;
     }
 
     public static User getUser() {
+
         return user;
+    }
+
+    public static User loginUser(String userName, String password) throws SQLException {
+        DbConnect connect = DbConnect.getInstance();
+        String query = "{CALL authenticateUser(?,?)}";
+
+        CallableStatement statement = connect.getConnection().prepareCall(query);
+        statement.setString(1, userName);
+        statement.setString(2, password);
+        ResultSet set = statement.executeQuery();
+        if (!set.next()) {
+            return null;
+        } else {
+            userId = set.getInt(1);
+            privilege = set.getBoolean(2);
+            query = "{CALL logIn(?)}";
+            statement = connect.getConnection().prepareCall(query);
+            statement.setInt(1, userId);
+            ResultSet set1 = statement.executeQuery();
+            User user1 = new User();
+            while (set1.next()) {
+                user1.setUserName(set1.getString(1));
+                user1.setPassword(set1.getString(2));
+                user1.setFirstName(set1.getString(3));
+                user1.setLastName(set1.getString(4));
+                user1.setEmail(set1.getString(5));
+                user1.setPhoneNumber(set1.getString(6));
+            }
+
+            statement = connect.getConnection().prepareCall("{CALL getShippingAddress(?)}");
+            statement.setInt(1, userId);
+            ResultSet set2 = statement.executeQuery();
+            shippingAddress = new ArrayList<>();
+            while (set2.next()) {
+                shippingAddress.add(set2.getString(1));
+            }
+            shoppingCart = new ArrayList<>();
+            user = user1;
+            return user;
+        }
+
+
+    }
+
+    public List<shoppingCartItem> getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public List<String> getShippingAddress() {
@@ -45,35 +91,12 @@ public class User {
         this.shippingAddress = shippingAddress;
     }
 
-    public User loginUser(String userName, String password) {
-        DbConnect connect = DbConnect.getInstance();
-        String query = "{CALL authenticateUser(?,?)}";
-        try {
-            CallableStatement statement = connect.getConnection().prepareCall(query);
-            statement.setString(1, userName);
-            statement.setString(2, password);
-            ResultSet set = statement.executeQuery();
-            if (set != null) {
-                return null;
-            } else {
-                ResultSetMapper<User> resultSetMapper = new ReflectionResultSetMapper<User>(User.class);
-                query = "{CALL logIn(?)}";
-                statement = connect.getConnection().prepareCall(query);
-                statement.setString(1, userName);
-                User user = resultSetMapper.mapRow(statement.executeQuery());
-
-                ResultSet set1 = connect.getData("Select shippingAddress from Shippingaddress where Shippingaddress.userName=" + userName + ";");
-                while (set1.next()) {
-                    shippingAddress.add(set1.getString(1));
-                }
-                this.user = user;
-                return user;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public int getTotalPriceCart() {
+        int sum = 0;
+        for (shoppingCartItem item : shoppingCart) {
+            sum += item.getTotalPrice();
         }
-
-        return null;
+        return sum;
     }
 
     public String getUserName() {
@@ -113,14 +136,25 @@ public class User {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phoneNum;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNum = phoneNumber;
     }
 
     public boolean isPrivilege() {
         return privilege;
+    }
+
+    public void emptyShoppingCart() {
+
+        shoppingCart = new ArrayList<>();
+
+    }
+
+    public void logOut() {
+
+        user = null;
     }
 }

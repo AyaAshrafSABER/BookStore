@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -20,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controller.AddBookController">
+            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="Controller.AddBookController">
     <top>
         <HBox prefHeight="54.0" prefWidth="640.0" BorderPane.alignment="CENTER">
             <children>
@@ -37,9 +36,9 @@
                                 <Font name="Sitka Small" size="40.0"/>
                             </font>
                         </Label>
-                        <Region prefHeight="47.0" prefWidth="250.0"/>
-                        <Label prefHeight="17.0" prefWidth="78.0" text="User Name"/>
-                        <Button mnemonicParsing="false">
+                        <Region prefHeight="47.0" prefWidth="200.0"/>
+                        <Label fx:id="userName" prefHeight="17.0" prefWidth="78.0" text="User Name"/>
+                        <Button mnemonicParsing="false" onAction="#goToShoppingCart">
                             <graphic>
                                 <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -48,7 +47,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="11.0">
+                        <Button mnemonicParsing="false" onAction="#goHome" prefHeight="34.0" prefWidth="11.0">
                             <graphic>
                                 <ImageView fitHeight="29.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -65,7 +64,7 @@
     <bottom>
         <HBox prefHeight="106.0" prefWidth="640.0" BorderPane.alignment="CENTER">
             <children>
-                <Label text="Publisher Information ">
+                <Label text="Publisher Information " wrapText="true">
                     <font>
                         <Font name="Meiryo UI Bold Italic" size="18.0"/>
                     </font>
@@ -74,46 +73,31 @@
                     </HBox.margin>
                 </Label>
                 <Region prefHeight="106.0" prefWidth="22.0"/>
-                <GridPane prefHeight="106.0" prefWidth="277.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" maxWidth="147.0" minWidth="10.0" prefWidth="77.0"/>
-                        <ColumnConstraints hgrow="ALWAYS" maxWidth="155.0" minWidth="10.0" prefWidth="155.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
+                <VBox prefHeight="106.0" prefWidth="198.0">
                     <children>
-                        <Label text="Name ">
-                            <font>
-                                <Font name="Meiryo UI" size="18.0"/>
-                            </font>
-                        </Label>
-                        <Label alignment="CENTER" text="Address" GridPane.rowIndex="1">
-                            <font>
-                                <Font name="Meiryo UI" size="18.0"/>
-                            </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="48.0" text="Phone" GridPane.rowIndex="2">
-                            <font>
-                                <Font name="Meiryo UI" size="18.0"/>
-                            </font>
-                        </Label>
-                        <TextField GridPane.columnIndex="1"/>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <ComboBox fx:id="allPublishers" prefWidth="200.0">
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </ComboBox>
+                        <Region prefHeight="35.0" prefWidth="200.0"/>
+                        <Button mnemonicParsing="false" onAction="#addNewPubliher" text="add new Publisher"
+                                textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets left="27.0"/>
+                            </VBox.margin>
+                        </Button>
                     </children>
-                    <opaqueInsets>
-                        <Insets top="20.0"/>
-                    </opaqueInsets>
-                </GridPane>
+                    <HBox.margin>
+                        <Insets left="10.0"/>
+                    </HBox.margin>
+                </VBox>
                 <Region prefHeight="106.0" prefWidth="102.0"/>
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
                         <Region prefHeight="200.0" prefWidth="200.0"/>
                         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
-                                prefHeight="43.0" prefWidth="46.0">
+                                onAction="#add" prefHeight="43.0" prefWidth="46.0">
                             <graphic>
                                 <ImageView fitHeight="59.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -131,8 +115,8 @@
     <left>
         <GridPane prefHeight="237.0" prefWidth="492.0" BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="179.0"/>
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="492.0" minWidth="10.0" prefWidth="313.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="233.0"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="492.0" minWidth="10.0" prefWidth="259.0"/>
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
@@ -143,11 +127,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                <TextField GridPane.columnIndex="1"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="ISBN" GridPane.columnIndex="1"/>
+                <TextField fx:id="Title" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="Price" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <ComboBox fx:id="category" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                 <Label text=" ISBN number ">
                     <font>
                         <Font name="Meiryo UI" size="18.0"/>
@@ -158,7 +141,6 @@
                         <Font name="Meiryo UI" size="18.0"/>
                     </font>
                 </Label>
-                <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                 <Label prefHeight="25.0" prefWidth="79.0" text="category" GridPane.rowIndex="4">
                     <font>
                         <Font name="Meiryo UI" size="18.0"/>
@@ -169,16 +151,46 @@
                         <Font name="Meiryo UI" size="18.0"/>
                     </font>
                 </Label>
-                <Label layoutX="10.0" layoutY="188.0" text="MinimumThreshold" GridPane.rowIndex="3">
-                    <font>
-                        <Font name="Meiryo UI" size="18.0"/>
-                    </font>
-                </Label>
                 <Label text="Publication year" GridPane.rowIndex="5">
                     <font>
                         <Font name="Meiryo UI" size="18.0"/>
                     </font>
                 </Label>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <HBox prefWidth="200.0" GridPane.rowIndex="3">
+                    <children>
+                        <Label text="Threshold">
+                            <font>
+                                <Font name="Meiryo UI" size="18.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets top="10.0"/>
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="threshold" prefHeight="26.0" prefWidth="104.0">
+                            <HBox.margin>
+                                <Insets left="20.0" top="10.0"/>
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Label text="# of Copies">
+                            <HBox.margin>
+                                <Insets top="10.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="copies" prefHeight="26.0" prefWidth="104.0">
+                            <HBox.margin>
+                                <Insets left="10.0" top="10.0"/>
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
             </children>
             <BorderPane.margin>
                 <Insets left="20.0" right="20.0"/>
@@ -189,23 +201,28 @@
         <VBox prefHeight="351.0" prefWidth="207.0" BorderPane.alignment="CENTER">
             <children>
                 <Region prefHeight="21.0" prefWidth="207.0"/>
-                <Label prefHeight="25.0" prefWidth="100.0" text="Authors">
-                    <font>
-                        <Font name="Meiryo UI Bold Italic" size="18.0"/>
-                    </font>
-                </Label>
-                <Region prefHeight="19.0" prefWidth="207.0"/>
-                <TextField>
+                <HBox prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label prefHeight="25.0" prefWidth="100.0" text="Authors">
+                            <font>
+                                <Font name="Meiryo UI Bold Italic" size="18.0"/>
+                            </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#addNewAuthor" text="Add New"/>
+                    </children>
+                </HBox>
+                <ComboBox fx:id="allAuthors" prefWidth="150.0">
                     <VBox.margin>
-                        <Insets right="20.0"/>
+                        <Insets top="10.0"/>
                     </VBox.margin>
-                </TextField>
+                </ComboBox>
                 <Region prefHeight="22.0" prefWidth="207.0"/>
                 <HBox prefHeight="46.0" prefWidth="207.0">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="31.0" text="+"/>
+                        <Button mnemonicParsing="false" onAction="#addAuthor" prefHeight="29.0" prefWidth="31.0"
+                                text="+"/>
                         <Region prefHeight="10.0" prefWidth="122.0"/>
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" onAction="#deleteAuthor">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -216,7 +233,7 @@
                         </Button>
                     </children>
                 </HBox>
-                <ListView prefHeight="138.0" prefWidth="207.0"/>
+                <ListView fx:id="authors" prefHeight="114.0" prefWidth="207.0"/>
             </children>
         </VBox>
     </right>

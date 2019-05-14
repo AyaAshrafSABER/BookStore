@@ -47,17 +47,14 @@ public class ProfileController {
 
     public void editProfile(ActionEvent event) throws IOException {
 
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../View/EditProfileView.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
+        Navigate.goToPage("../View/EditProfileView.fxml", event, getClass());
 
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(tableViewScene);
-        window.show();
     }
 
 
+    public void goHome(ActionEvent actionEvent) throws IOException {
 
+        Navigate.goToPage("../View/HomePageView.fxml", actionEvent, getClass());
 
+    }
 }
