@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import java.util.regex.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -48,7 +48,8 @@ public class SignUpController {
     private Button submit;
 
     private List<String> list;
-
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     public void signup(ActionEvent actionEvent) {
         DbConnect connect = DbConnect.getInstance();
@@ -58,36 +59,46 @@ public class SignUpController {
 
             connect.getConnection().setAutoCommit(false);
             CallableStatement statement2 = connect.getConnection().prepareCall(signUpQuery);
+            Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email.getText());
 
-            statement2.setString(1, userName.getText());
-            statement2.setString(2, password.getText());
-            statement2.setString(3, firstName.getText());
-            statement2.setString(4, lastName.getText());
-            statement2.setString(5, email.getText());
-            statement2.setString(6, phoneNumber.getText());
-            statement2.setBoolean(7, false);
-            ResultSet rs = statement2.executeQuery();
-            CallableStatement statement3 = connect.getConnection().prepareCall(adressquery);
-            for (String s : list) {
-                if (s.length() > 0) {
-                    if (rs.next()) {
-                        statement3.setString(1, String.valueOf(rs.getInt(1))); //to be updated
+            if (matcher.find()) {
+                statement2.setString(1, userName.getText());
+                statement2.setString(2, password.getText());
+                statement2.setString(3, firstName.getText());
+                statement2.setString(4, lastName.getText());
+
+                statement2.setString(5, email.getText());
+
+                statement2.setString(6, phoneNumber.getText());
+                statement2.setBoolean(7, false);
+                ResultSet rs = statement2.executeQuery();
+                CallableStatement statement3 = connect.getConnection().prepareCall(adressquery);
+                for (String s : list) {
+                    if (s.length() > 0) {
+                        if (rs.next()) {
+                            statement3.setString(1, String.valueOf(rs.getInt(1))); //to be updated
+                        }
+                        statement3.setString(2, s);
+                        statement3.executeQuery();
                     }
-                    statement3.setString(2, s);
-                    statement3.executeQuery();
                 }
+                Parent tableViewParent = FXMLLoader.load(getClass().getResource("../View/LogINView.fxml"));
+                Scene tableViewScene = new Scene(tableViewParent);
+
+                //This line gets the Stage information
+                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+                window.setScene(tableViewScene);
+                window.show();
+
+                connect.getConnection().commit();
+                connect.getConnection().setAutoCommit(true);
+
+            }else {
+                AlertBox box = new AlertBox();
+                box.display("Email Error","Email Invalid Format");
+
             }
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("../View/LogINView.fxml"));
-            Scene tableViewScene = new Scene(tableViewParent);
-
-            //This line gets the Stage information
-            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            window.setScene(tableViewScene);
-            window.show();
-
-            connect.getConnection().commit();
-            connect.getConnection().setAutoCommit(true);
 
         } catch (SQLException e) {
             e.printStackTrace();
