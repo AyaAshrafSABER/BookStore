@@ -108,6 +108,7 @@ public class HomePageController {
     public void initialize() throws IOException {
 
 
+
         categories.setItems(FXCollections.observableArrayList("Science", "Art", "Geography", "History", "Religion"));
         if (User.getUser() == null) {
             profile.setDisable(true);

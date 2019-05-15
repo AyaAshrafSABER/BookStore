@@ -4,9 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import Controller.DbConnect;
-import net.sf.jasperreports.web.servlets.ReportActionServlet;
+import Controller.*;
 import Model.Report;
+
+
 
 public class OnlineBookApp extends Application {
     private static final String HOME_PAGE = "../View/HomePageView.fxml";
@@ -29,8 +30,9 @@ public class OnlineBookApp extends Application {
 
     public static void main(String[] args) {
         Report re = new Report();
-        ((Report) re).getTop10Books();
+        ((Report) re).getTop5Customer();
         DbConnect connect = DbConnect.getInstance();
-        launch(args);
+
+     //   launch(args);
     }
 }
