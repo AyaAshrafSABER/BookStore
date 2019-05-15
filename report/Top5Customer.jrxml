@@ -14,17 +14,17 @@
 		</conditionalStyle>
 	</style>
 	<queryString language="SQL">
-		<![CDATA[SELECT customarId ,  SUM(shoppingCart.quantity) from customarOrders , shoppingCart
+		<![CDATA[SELECT customarId ,  SUM(shoppingCart.quantity) as quintity from customarOrders , shoppingCart
 where DATEDIFF(date,current_date()) > 0 and customarOrders.orderId = shoppingCart.orderId
 group by customarId
 order by SUM(shoppingCart.quantity) LIMIT 5 ;]]>
 	</queryString>
-	<field name="USER_NAME" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="USER_NAME"/>
+	<field name="customarId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="customarId"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
 	</field>
-	<field name="PRICE" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="PRICE"/>
+	<field name="quintity" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="quintity"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -76,7 +76,7 @@ order by SUM(shoppingCart.quantity) LIMIT 5 ;]]>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[User ID]]></text>
+				<text><![CDATA["customarId"]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="277" y="7" width="277" height="18" forecolor="#000000" uuid="0f252edf-b85b-4e94-ace3-89e46f20d4d4">
@@ -85,7 +85,7 @@ order by SUM(shoppingCart.quantity) LIMIT 5 ;]]>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[Purchase Amount]]></text>
+				<text><![CDATA["quintity"]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -100,7 +100,7 @@ order by SUM(shoppingCart.quantity) LIMIT 5 ;]]>
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{USER_NAME}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{customarId}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="277" y="0" width="277" height="18" uuid="34566cb6-bfdf-4979-bddc-b617d87497d4">
@@ -109,7 +109,7 @@ order by SUM(shoppingCart.quantity) LIMIT 5 ;]]>
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{quintity}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

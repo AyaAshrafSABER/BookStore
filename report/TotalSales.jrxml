@@ -16,19 +16,16 @@
 		</conditionalStyle>
 	</style>
 	<queryString language="SQL">
-		<![CDATA[select SUM(quantity) from shoppingCart
-where DATEDIFF(date,CURDATE()) > 0;
-]]>
+		<![CDATA[select  title as Title , SUM(quantity)as quintity from shoppingCart join book b on shoppingCart.ISBN = b.ISBN
+where datediff(date,current_date()) > 0
+group by shoppingCart.ISBN, title;]]>
 	</queryString>
 	<field name="TITLE" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="TITLE"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="books"/>
 	</field>
-	<field name="QUANTITY" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="QUANTITY"/>
-	</field>
-	<field name="SALES_SUM" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="SALES_SUM"/>
+	<field name="quintity" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="quintity"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -89,16 +86,7 @@ where DATEDIFF(date,CURDATE()) > 0;
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[Quantity]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="370" y="7" width="185" height="18" forecolor="#000000" uuid="e0fb8791-9a6d-4209-9a4a-0fb04bba09af">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="59de0869-2821-4355-a062-d5fbab57b77b"/>
-				</reportElement>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Revenue]]></text>
+				<text><![CDATA[quintity]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -122,16 +110,7 @@ where DATEDIFF(date,CURDATE()) > 0;
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="370" y="0" width="185" height="18" uuid="b81e385d-ee96-4e2a-b96b-6517440ba793">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="59de0869-2821-4355-a062-d5fbab57b77b"/>
-					</reportElement>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{SALES_SUM}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{quintity}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
