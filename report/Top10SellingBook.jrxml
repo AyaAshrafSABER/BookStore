@@ -14,7 +14,7 @@
 		</conditionalStyle>
 	</style>
 	<queryString language="SQL">
-		<![CDATA[select  b.title, SUM(shoppingCart.quantity) as quintity
+		<![CDATA[select  b.title as title, SUM(shoppingCart.quantity) as quintity
 		from shoppingCart join book b on shoppingCart.ISBN = b.ISBN
 		where DATEDIFF(date,CURRENT_DATE()) > 0
 		group by shoppingCart.ISBN
