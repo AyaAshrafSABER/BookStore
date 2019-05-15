@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Report;
 import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -87,6 +88,13 @@ public class ManagerController {
 
         Navigate.goToPage("../View/ShoppingCart.fxml", actionEvent, getClass());
 
+
+    }
+
+    public void getReports(ActionEvent actionEvent) {
+
+        Report report = new Report();
+        report.getTop10Books();
 
     }
 }

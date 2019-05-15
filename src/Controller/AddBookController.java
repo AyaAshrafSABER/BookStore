@@ -2,17 +2,23 @@
 package Controller;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 import java.util.*;
 
 import Model.User;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class AddBookController {
 
@@ -188,9 +194,20 @@ public class AddBookController {
 
     }
 
-    public void addNewPubliher(ActionEvent actionEvent) {
+    public void addNewPubliher(ActionEvent actionEvent) throws IOException {
+
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../View/AddView.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.showAndWait();
+
     }
 
     public void addNewAuthor(ActionEvent actionEvent) {
     }
+
 }
