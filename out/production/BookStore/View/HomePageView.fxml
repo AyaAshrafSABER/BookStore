@@ -20,22 +20,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="515.0" prefWidth="600.0"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="550.0" prefWidth="750.0"
             xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="Controller.HomePageController">
     <top>
         <HBox prefHeight="54.0" prefWidth="640.0" BorderPane.alignment="CENTER">
             <children>
-                <ToolBar prefHeight="57.0" prefWidth="742.0">
+                <ToolBar prefHeight="57.0">
                     <items>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../res/architecture-and-city.png"/>
                             </image>
                         </ImageView>
-                        <TextField prefHeight="25.0" prefWidth="293.0"/>
-                        <Button mnemonicParsing="false">
+                        <TextField fx:id="title" prefHeight="25.0" prefWidth="293.0"/>
+                        <Button mnemonicParsing="false" onAction="#searchBook">
                             <graphic>
-                                <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="30.0" fitWidth="29.0" onDragDetected="#searchBook"
+                                           pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../res/search.png"/>
                                     </image>
@@ -43,8 +44,8 @@
                             </graphic>
                         </Button>
                         <Region prefHeight="44.0" prefWidth="5.0"/>
-                        <Label prefHeight="17.0" prefWidth="78.0" text="User Name"/>
-                        <Button mnemonicParsing="false">
+                        <Label fx:id="userName" prefHeight="17.0" prefWidth="78.0" text="User Name"/>
+                        <Button fx:id="shoppingCartButton" mnemonicParsing="false" onAction="#goToShoppingCart">
                             <graphic>
                                 <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -53,11 +54,31 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="login" mnemonicParsing="false" prefHeight="34.0" prefWidth="11.0">
+                        <Button fx:id="login" mnemonicParsing="false" onAction="#Login">
                             <graphic>
-                                <ImageView fitHeight="29.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="imageLog" fitHeight="34.0" fitWidth="38.0" pickOnBounds="true"
+                                           preserveRatio="true">
                                     <image>
                                         <Image url="@../res/exit.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="manage" mnemonicParsing="false" onAction="#goToManage" prefWidth="65.0"
+                                wrapText="true">
+                            <graphic>
+                                <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../res/execution.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="profile" mnemonicParsing="false" onAction="#getProfile">
+                            <graphic>
+                                <ImageView fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../res/user.png"/>
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -103,19 +124,31 @@
                                     </font>
                                 </Label>
                                 <TextField fx:id="publicationYear"/>
-                                <Label text="Price">
-                                    <font>
-                                        <Font size="14.0"/>
-                                    </font>
-                                </Label>
-                                <TextField fx:id="price"/>
+                                <HBox prefHeight="20.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Min Price">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <Region prefHeight="200.0" prefWidth="90.0"/>
+                                        <Label text="Max Price"/>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="0.0" prefWidth="200.0">
+                                    <children>
+                                        <TextField fx:id="minPrice" prefWidth="70.0"/>
+                                        <Region prefHeight="100.0" prefWidth="80.0"/>
+                                        <TextField fx:id="maxPrice" layoutX="10.0" layoutY="10.0" prefWidth="70.0"/>
+                                    </children>
+                                </HBox>
                                 <Label text="Author">
                                     <font>
                                         <Font size="14.0"/>
                                     </font>
                                 </Label>
                                 <TextField fx:id="authorName"/>
-                                <ListView prefHeight="57.0" prefWidth="177.0"/>
+                                <ListView fx:id="authorsList" prefHeight="57.0" prefWidth="177.0"/>
                                 <Pane prefHeight="0.0" prefWidth="168.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#addAuthor" prefHeight="31.0"
@@ -167,7 +200,7 @@
                         <Insets left="20.0" right="20.0"/>
                     </padding>
                 </VBox>
-                <VBox prefHeight="433.0" prefWidth="296.0">
+                <VBox prefHeight="433.0" prefWidth="350.0">
                     <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="306.0"
                                text="Search Result" VBox.vgrow="SOMETIMES">
@@ -176,19 +209,19 @@
                             </font>
                         </Label>
                         <Region prefHeight="21.0" prefWidth="296.0"/>
-                        <TableView VBox.vgrow="ALWAYS">
+                        <TableView fx:id="bookTable" onMouseClicked="#getBookDetails" VBox.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn prefWidth="75.0" text="ISBN "/>
-                                <TableColumn prefWidth="75.0" text="Title"/>
-                                <TableColumn prefWidth="75.0" text="Category"/>
-                                <TableColumn prefWidth="75.0" text="Price"/>
+                                <TableColumn fx:id="isbnCol" prefWidth="75.0" text="ISBN "/>
+                                <TableColumn fx:id="titleCol" prefWidth="75.0" text="Title"/>
+                                <TableColumn fx:id="categoryCol" prefWidth="75.0" text="Category"/>
+                                <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price"/>
                             </columns>
                         </TableView>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                             <children>
                                 <Region prefHeight="77.0" prefWidth="201.0"/>
                                 <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                                        text="Load More">
+                                        onAction="#loadMore" text="Load More">
                                     <HBox.margin>
                                         <Insets top="20.0"/>
                                     </HBox.margin>

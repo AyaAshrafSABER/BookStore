@@ -52,12 +52,12 @@ public class User {
             ResultSet set1 = statement.executeQuery();
             User user1 = new User();
             while (set1.next()) {
-                user1.setUserName(set1.getString(1));
-                user1.setPassword(set1.getString(2));
-                user1.setFirstName(set1.getString(3));
-                user1.setLastName(set1.getString(4));
-                user1.setEmail(set1.getString(5));
-                user1.setPhoneNumber(set1.getString(6));
+                user1.setUserName(set1.getString(2));
+                user1.setPassword(set1.getString(3));
+                user1.setFirstName(set1.getString(4));
+                user1.setLastName(set1.getString(5));
+                user1.setEmail(set1.getString(6));
+                user1.setPhoneNumber(set1.getString(7));
             }
 
             statement = connect.getConnection().prepareCall("{CALL getShippingAddress(?)}");

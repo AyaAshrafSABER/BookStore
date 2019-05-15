@@ -12,6 +12,7 @@ CREATE
 BEGIN
     insert into shoppingCart (orderId, ISBN, quantity, price, date)
     values (orderId, bookId, quantity, price, CURDATE());
+
 END$$
 
 DELIMITER ;
@@ -103,7 +104,7 @@ BEGIN
     insert into book (title, publisherId, publicationYear, price, category)
     values (title, publisherID, publicationYear,
             price, category);
-    insert into book_quantity values (LAST_INSERT_ID(), threshold, nOfcopies);
+    insert into book_quantity values (LAST_INSERT_ID(), nOfcopies, threshold);
     select LAST_INSERT_ID();
 
 END$$
@@ -175,11 +176,12 @@ CREATE
                                                            in P_category varchar(10),
                                                            in P_author varchar(100), in startIndex int)
 BEGIN
-    SELECT *
+     SELECT DISTINCT b.ISBN , title , c.publisherId , publicationYear , price , category , threshold , nOfCopies
     FROM book c
              left join book_authors b
                        on c.ISBN = b.ISBN
              left join publisher p on c.publisherId = p.publisherId
+    left join book_quantity bq on c.ISBN = bq.ISBN
     where (P_ISBN is null or c.ISBN = P_ISBN)
       and (P_title is null or c.Title = P_title)
       and (P_publisherName is null or p.publisherName = P_publisherName)
@@ -188,7 +190,6 @@ BEGIN
       and (P_author is null or b.authorID in (select authorID from authors where P_author = authors.authorName))
       and (P_Maxprice is null or P_Minprice is null or c.price BETWEEN P_Minprice AND P_Maxprice)
     limit startIndex , 10;
-
 END$$
 
 DELIMITER ;
@@ -440,5 +441,19 @@ CREATE
 BEGIN
     insert into customarOrders (customarId, totalPrice) values (P_userId, totalPrice);
     select last_insert_id();
+END $$
+DELIMITER ;
+
+
+-- -----------------------------------------------------
+-- procedure insertCustomerOrder
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `BookStore` $$
+CREATE
+    DEFINER = `root`@`localhost` PROCEDURE `getUsers`()
+BEGIN
+    select userName from users where privilege = false;
 END $$
 DELIMITER ;

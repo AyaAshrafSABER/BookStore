@@ -67,8 +67,7 @@ public class ManagerController {
     }
 
     public void promoteUser(ActionEvent actionEvent) {
-        promoteUser = new PromoteUserController();
-        promoteUser.initializePromoteButtons();
+        PromoteUserController.display();
     }
 
     public void goToHome(ActionEvent actionEvent) throws IOException {

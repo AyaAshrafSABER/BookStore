@@ -24,16 +24,19 @@ public class book {
     @MapToData(columnPrefix = "category")
     private String category;
 
-    private int quantity;
-    private int threshold;
-
-    public int getQuantity() {
-        return quantity;
+    public int getnOfCopies() {
+        return nOfCopies;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setnOfCopies(int nOfCopies) {
+        this.nOfCopies = nOfCopies;
     }
+
+    @MapToData (columnPrefix = "nOfCopies") private int nOfCopies;
+    @MapToData private int threshold;
+
+
+
 
     public int getThreshold() {
         return threshold;

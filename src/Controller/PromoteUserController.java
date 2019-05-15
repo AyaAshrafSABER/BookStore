@@ -1,47 +1,64 @@
 package Controller;
 
-import java.net.URL;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.scene.layout.*;
+import javafx.scene.control.*;
+import javafx.geometry.*;
+
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
+public class PromoteUserController {
 
-public class PromoteUserController extends Dialog<Object> {
+    public static void display() {
+        Stage window = new Stage();
 
-    private static final String TITLE = "Promote User";
-    private static final String SECTION_MESSAGE = "PLease Enter the following information";
-    private static final String USER_NAME_EXAMPLE = "Mohamed96";
-    private static final String USER_NAME = "User Name";
-    private static final String PROMOTE_USER = "Promote";
-    private static TextInputDialog dialog;
+        //Block events to other windows
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("User promote");
+        window.setMinWidth(250);
+
+        Label label = new Label();
+        label.setText("Choose The user You want to promote");
+        ListView<String> users = new ListView<>();
+        DbConnect connect = DbConnect.getInstance();
+        String queryGet = "{CAll getUsers()}";
 
 
-    public void initializePromoteButtons() {
-        dialog = new TextInputDialog(USER_NAME);
-        dialog.setTitle(TITLE);
-        dialog.setHeaderText(PROMOTE_USER);
-        dialog.setContentText(SECTION_MESSAGE);
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            DbConnect connect = DbConnect.getInstance();
-            String query = "{CALL managerPromote(?)}";
-            try {
-                CallableStatement statement = connect.getConnection().prepareCall(query);
-                statement.setString(1, result.get());
-                statement.executeQuery();
-            } catch (SQLException e) {
-                e.printStackTrace();
+        try {
+            CallableStatement statement = connect.getConnection().prepareCall(queryGet);
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                users.getItems().add(set.getString(1));
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
+        Button closeButton = new Button("promote");
+        closeButton.setOnAction(e -> {
+            String query = "{CALL managerPromote(?)}";
+            try {
+                CallableStatement statement1 = connect.getConnection().prepareCall(query);
+                statement1.setString(1, users.getSelectionModel().getSelectedItem());
+                statement1.executeQuery();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            window.close();
+
+        });
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(label,users, closeButton);
+        layout.setAlignment(Pos.CENTER);
+
+        //Display window and wait for it to be closed before returning
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.showAndWait();
     }
+
 }

@@ -58,17 +58,18 @@ public class EditProfileController {
     public void submitEdit(ActionEvent event) throws IOException {
 
         DbConnect connect = DbConnect.getInstance();
-        String infoquery = "{CALL updateInfo(?,?,?,?,?,?)}";
+        String infoquery = "{CALL updateInfo(?,?,?,?,?,?,?)}";
 
         try {
             connect.getConnection().setAutoCommit(false);
             CallableStatement statement2 = connect.getConnection().prepareCall(infoquery);
-            statement2.setString(1, User.getUser().getUserName());
-            statement2.setString(2, password.getText());
-            statement2.setString(3, firstName.getText());
-            statement2.setString(4, lastName.getText());
-            statement2.setString(5, email.getText());
-            statement2.setString(6, phoneNumber.getText());
+            statement2.setInt(1,User.getUserId());
+            statement2.setString(2, User.getUser().getUserName());
+            statement2.setString(3, password.getText());
+            statement2.setString(4, firstName.getText());
+            statement2.setString(5, lastName.getText());
+            statement2.setString(6, email.getText());
+            statement2.setString(7, phoneNumber.getText());
             statement2.executeQuery();
             if (list != null) {
                 String adressquery = "{CALL insertToShippingAddress(?,?)}";

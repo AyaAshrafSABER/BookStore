@@ -47,7 +47,7 @@ public class SignUpController {
     @FXML
     private Button submit;
 
-    private List<String> list;
+    private List<String> list = new ArrayList<>();
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
@@ -70,7 +70,7 @@ public class SignUpController {
                 statement2.setString(5, email.getText());
 
                 statement2.setString(6, phoneNumber.getText());
-                statement2.setBoolean(7, false);
+                statement2.setBoolean(7, true);
                 ResultSet rs = statement2.executeQuery();
                 CallableStatement statement3 = connect.getConnection().prepareCall(adressquery);
                 for (String s : list) {

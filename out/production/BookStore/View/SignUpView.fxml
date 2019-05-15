@@ -2,8 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -44,7 +44,7 @@
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets></Label>
-                        <TextField id="UserNameEditField" alignment="CENTER" GridPane.columnIndex="1" />
+                        <TextField id="UserNameEditField" fx:id="userName" alignment="CENTER" GridPane.columnIndex="1"/>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Password" textAlignment="CENTER" GridPane.rowIndex="1">
                             <padding>
                                 <Insets left="50.0" />
@@ -56,8 +56,9 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField prefHeight="17.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <TextField fx:id="lastName" prefHeight="17.0" prefWidth="152.0" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="3"/>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="First Name" textAlignment="CENTER" GridPane.rowIndex="2">
                             <padding>
                                 <Insets left="50.0" />
@@ -80,7 +81,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Email" textAlignment="CENTER" GridPane.rowIndex="4">
                             <padding>
                                 <Insets left="50.0" />
@@ -92,7 +93,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Phone Number" textAlignment="CENTER" GridPane.rowIndex="5">
                             <padding>
                                 <Insets left="50.0" />
@@ -104,7 +105,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                     </children>
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" />
@@ -129,7 +130,8 @@
                 <Button fx:id="signUp" alignment="CENTER" mnemonicParsing="false" onAction="#signup" prefHeight="50.0"
                         prefWidth="62.0" textOverrun="CLIP" BorderPane.alignment="CENTER">
                     <graphic>
-                        <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="44.0" fitWidth="59.0" onDragDetected="#signup" pickOnBounds="true"
+                                   preserveRatio="true">
                             <image>
                                 <Image url="@../res/done.png" />
                             </image>
@@ -141,7 +143,8 @@
                 </Button>
             </right>
             <left>
-                <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="34.0" prefWidth="51.0" textFill="#f80505" BorderPane.alignment="CENTER">
+                <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#exit" prefHeight="34.0"
+                        prefWidth="51.0" textFill="#f80505" BorderPane.alignment="CENTER">
                     <graphic>
                         <ImageView fitHeight="42.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -165,11 +168,17 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <TextField layoutX="251.0" layoutY="14.0" />
-                        <ComboBox layoutX="74.0" layoutY="58.0" prefWidth="150.0" />
+                        <TextField fx:id="newAddress" layoutX="251.0" layoutY="14.0"/>
+                        <ListView fx:id="shipAddress" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0"
+                                  AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </ListView>
                         <Button fx:id="add" layoutX="414.0" layoutY="14.0" mnemonicParsing="false"
                                 onAction="#addAddress" text="+"/>
-                        <Button layoutX="450.0" layoutY="14.0" mnemonicParsing="false" text="Delete" />
+                        <Button layoutX="450.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteAddress"
+                                text="Delete"/>
                     </children>
                 </AnchorPane>
             </top>

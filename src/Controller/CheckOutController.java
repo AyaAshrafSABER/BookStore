@@ -31,7 +31,6 @@ public class CheckOutController {
     @FXML
     private DatePicker expDate;
 
-    private int price;
     private int order;
 
 
@@ -39,15 +38,15 @@ public class CheckOutController {
     public void initialize() {
         User user = User.getUser();
         userName.setText(user.getUserName());
-        orderId.setText(String.valueOf(order));
-        totalPrice.setText(String.valueOf(price));
         addresses.setItems(FXCollections.observableArrayList(user.getShippingAddress()));
     }
 
-    protected void initData(int price, int order) {
+    public void initData(int price, int order) {
 
-        this.price = price;
-        this.order = order;
+        orderId.setText(String.valueOf(order));
+        totalPrice.setText(String.valueOf(price));
+        this.order = Integer.parseInt(orderId.getText());
+
 
     }
 
@@ -102,7 +101,7 @@ public class CheckOutController {
 
     public void submitOrder(ActionEvent actionEvent) throws IOException {
 
-        User.getUser().setShippingAddress(new ArrayList<>());
+        User.getUser().emptyShoppingCart();
         Navigate.goToPage("../View/HomePageView.fxml", actionEvent, getClass());
 
 

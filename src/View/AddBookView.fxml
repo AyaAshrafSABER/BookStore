@@ -18,8 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="Controller.AddBookController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddBookController">
     <top>
         <HBox prefHeight="54.0" prefWidth="640.0" BorderPane.alignment="CENTER">
             <children>
@@ -27,22 +26,21 @@
                     <items>
                         <ImageView fitHeight="36.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../res/open-book.png"/>
+                                <Image url="@../res/open-book.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="RIGHT_TO_LEFT"
-                               prefHeight="47.0" prefWidth="290.0" text="New Book " textOverrun="WORD_ELLIPSIS">
+                        <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="290.0" text="New Book " textOverrun="WORD_ELLIPSIS">
                             <font>
-                                <Font name="Sitka Small" size="40.0"/>
+                                <Font name="Sitka Small" size="40.0" />
                             </font>
                         </Label>
-                        <Region prefHeight="47.0" prefWidth="200.0"/>
-                        <Label fx:id="userName" prefHeight="17.0" prefWidth="78.0" text="User Name"/>
+                        <Region prefHeight="47.0" prefWidth="200.0" />
+                        <Label fx:id="userName" prefHeight="17.0" prefWidth="78.0" text="User Name" />
                         <Button mnemonicParsing="false" onAction="#goToShoppingCart">
                             <graphic>
                                 <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../res/shopping-cart.png"/>
+                                        <Image url="@../res/shopping-cart.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -51,7 +49,7 @@
                             <graphic>
                                 <ImageView fitHeight="29.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../res/left-arrow.png"/>
+                                        <Image url="@../res/left-arrow.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -66,47 +64,45 @@
             <children>
                 <Label text="Publisher Information " wrapText="true">
                     <font>
-                        <Font name="Meiryo UI Bold Italic" size="18.0"/>
+                        <Font name="Meiryo UI Bold Italic" size="18.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="20.0" top="10.0"/>
+                        <Insets left="20.0" top="10.0" />
                     </HBox.margin>
                 </Label>
-                <Region prefHeight="106.0" prefWidth="22.0"/>
+                <Region prefHeight="106.0" prefWidth="22.0" />
                 <VBox prefHeight="106.0" prefWidth="198.0">
                     <children>
                         <ComboBox fx:id="allPublishers" prefWidth="200.0">
                             <VBox.margin>
-                                <Insets/>
+                                <Insets />
                             </VBox.margin>
                         </ComboBox>
-                        <Region prefHeight="35.0" prefWidth="200.0"/>
-                        <Button mnemonicParsing="false" onAction="#addNewPubliher" text="add new Publisher"
-                                textAlignment="CENTER">
+                        <Region prefHeight="35.0" prefWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#addNewPubliher" text="add new Publisher" textAlignment="CENTER">
                             <VBox.margin>
-                                <Insets left="27.0"/>
+                                <Insets left="27.0" />
                             </VBox.margin>
                         </Button>
                     </children>
                     <HBox.margin>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </HBox.margin>
                 </VBox>
-                <Region prefHeight="106.0" prefWidth="102.0"/>
+                <Region prefHeight="106.0" prefWidth="102.0" />
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Region prefHeight="200.0" prefWidth="200.0"/>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
-                                onAction="#add" prefHeight="43.0" prefWidth="46.0">
+                        <Region prefHeight="200.0" prefWidth="200.0" />
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#add" prefHeight="43.0" prefWidth="46.0">
                             <graphic>
                                 <ImageView fitHeight="59.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../res/done.png"/>
+                                        <Image url="@../res/done.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Region prefHeight="200.0" prefWidth="200.0"/>
+                        <Region prefHeight="200.0" prefWidth="200.0" />
                     </children>
                 </VBox>
             </children>
@@ -115,61 +111,61 @@
     <left>
         <GridPane prefHeight="237.0" prefWidth="492.0" BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="233.0"/>
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="492.0" minWidth="10.0" prefWidth="259.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="233.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="492.0" minWidth="10.0" prefWidth="259.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TextField fx:id="ISBN" GridPane.columnIndex="1"/>
-                <TextField fx:id="Title" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <TextField fx:id="Price" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <ComboBox fx:id="category" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="ISBN" GridPane.columnIndex="1" />
+                <TextField fx:id="Title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="Price" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ComboBox fx:id="category" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <Label text=" ISBN number ">
                     <font>
-                        <Font name="Meiryo UI" size="18.0"/>
+                        <Font name="Meiryo UI" size="18.0" />
                     </font>
                 </Label>
                 <Label text="Title" GridPane.rowIndex="1">
                     <font>
-                        <Font name="Meiryo UI" size="18.0"/>
+                        <Font name="Meiryo UI" size="18.0" />
                     </font>
                 </Label>
                 <Label prefHeight="25.0" prefWidth="79.0" text="category" GridPane.rowIndex="4">
                     <font>
-                        <Font name="Meiryo UI" size="18.0"/>
+                        <Font name="Meiryo UI" size="18.0" />
                     </font>
                 </Label>
                 <Label layoutX="10.0" layoutY="222.0" text="Price" GridPane.rowIndex="2">
                     <font>
-                        <Font name="Meiryo UI" size="18.0"/>
+                        <Font name="Meiryo UI" size="18.0" />
                     </font>
                 </Label>
                 <Label text="Publication year" GridPane.rowIndex="5">
                     <font>
-                        <Font name="Meiryo UI" size="18.0"/>
+                        <Font name="Meiryo UI" size="18.0" />
                     </font>
                 </Label>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <TextField fx:id="publicationYear" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 <HBox prefWidth="200.0" GridPane.rowIndex="3">
                     <children>
                         <Label text="Threshold">
                             <font>
-                                <Font name="Meiryo UI" size="18.0"/>
+                                <Font name="Meiryo UI" size="18.0" />
                             </font>
                             <HBox.margin>
-                                <Insets top="10.0"/>
+                                <Insets top="10.0" />
                             </HBox.margin>
                         </Label>
                         <TextField fx:id="threshold" prefHeight="26.0" prefWidth="104.0">
                             <HBox.margin>
-                                <Insets left="20.0" top="10.0"/>
+                                <Insets left="20.0" top="10.0" />
                             </HBox.margin>
                         </TextField>
                     </children>
@@ -178,62 +174,61 @@
                     <children>
                         <Label text="# of Copies">
                             <HBox.margin>
-                                <Insets top="10.0"/>
+                                <Insets top="10.0" />
                             </HBox.margin>
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
                         <TextField fx:id="copies" prefHeight="26.0" prefWidth="104.0">
                             <HBox.margin>
-                                <Insets left="10.0" top="10.0"/>
+                                <Insets left="10.0" top="10.0" />
                             </HBox.margin>
                         </TextField>
                     </children>
                 </HBox>
             </children>
             <BorderPane.margin>
-                <Insets left="20.0" right="20.0"/>
+                <Insets left="20.0" right="20.0" />
             </BorderPane.margin>
         </GridPane>
     </left>
     <right>
         <VBox prefHeight="351.0" prefWidth="207.0" BorderPane.alignment="CENTER">
             <children>
-                <Region prefHeight="21.0" prefWidth="207.0"/>
+                <Region prefHeight="21.0" prefWidth="207.0" />
                 <HBox prefHeight="30.0" prefWidth="200.0">
                     <children>
                         <Label prefHeight="25.0" prefWidth="100.0" text="Authors">
                             <font>
-                                <Font name="Meiryo UI Bold Italic" size="18.0"/>
+                                <Font name="Meiryo UI Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#addNewAuthor" text="Add New"/>
+                        <Button mnemonicParsing="false" onAction="#addNewAuthor" text="Add New" />
                     </children>
                 </HBox>
                 <ComboBox fx:id="allAuthors" prefWidth="150.0">
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                 </ComboBox>
-                <Region prefHeight="22.0" prefWidth="207.0"/>
+                <Region prefHeight="22.0" prefWidth="207.0" />
                 <HBox prefHeight="46.0" prefWidth="207.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#addAuthor" prefHeight="29.0" prefWidth="31.0"
-                                text="+"/>
-                        <Region prefHeight="10.0" prefWidth="122.0"/>
+                        <Button mnemonicParsing="false" onAction="#addAuthor" prefHeight="29.0" prefWidth="31.0" text="+" />
+                        <Region prefHeight="10.0" prefWidth="122.0" />
                         <Button mnemonicParsing="false" onAction="#deleteAuthor">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../res/trash.png"/>
+                                        <Image url="@../res/trash.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
                     </children>
                 </HBox>
-                <ListView fx:id="authors" prefHeight="114.0" prefWidth="207.0"/>
+                <ListView fx:id="authors" prefHeight="114.0" prefWidth="207.0" />
             </children>
         </VBox>
     </right>

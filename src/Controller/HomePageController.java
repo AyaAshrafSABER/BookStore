@@ -192,6 +192,7 @@ public class HomePageController {
         while (set.next()) {
             book book = resultSetMapper.mapRow(set);
             book.setBookId(set.getInt(1));
+            book.setnOfCopies(set.getInt(8));
             books.add(book);
         }
         bookTable.setItems(books);

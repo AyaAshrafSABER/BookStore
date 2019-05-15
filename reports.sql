@@ -1,17 +1,19 @@
-declare @start date = DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE())-3, 0)
-declare @end date = DATEADD(MONTH, DATEDIFF(MONTH, -1, GETDATE())-1, -1)
-
-select ISBN , SUM(shoppingCart.quantity) from table shoppingCart
-where dateField between @start and @end
+use BookStore;
+select  shoppingCart.ISBN , title , SUM(shoppingCart.quantity) from shoppingCart join book b on shoppingCart.ISBN = b.ISBN
+where DATEDIFF(date,CURRENT_DATE()) > 0
 group by shoppingCart.ISBN
 order by  SUM(shoppingCart.quantity) ASC  LIMIT 10 ;
 
 
-SELECT customarName ,  SUM(shoppingCart.quantity) from table customarOrders , shoppingCart
-where dataField between @start and @end and customarOrders.orderId = shoppingCart.orderId
-group by customarName
+SELECT customarId ,  SUM(shoppingCart.quantity) from customarOrders , shoppingCart
+where DATEDIFF(date,current_date()) > 0 and customarOrders.orderId = shoppingCart.orderId
+group by customarId
 order by SUM(shoppingCart.quantity) LIMIT 5 ;
 
 
-select SUM(quantity) from table shoppingCart
-where dataField > @end ;
+select shoppingCart.ISBN , title , SUM(quantity) from shoppingCart join book b on shoppingCart.ISBN = b.ISBN
+where datediff(date,current_date()) > 0
+group by shoppingCart.ISBN, title;
+
+select SUM(quantity) from shoppingCart
+where DATEDIFF(date,CURDATE()) > 0;

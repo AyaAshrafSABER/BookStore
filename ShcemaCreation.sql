@@ -70,14 +70,14 @@ create table book_orders
 create table users
 (
   userId    int primary key auto_increment,
-  userName  varchar(50),
+  userName  varchar(50) unique ,
   password  varchar(255),
   privilege boolean
 );
 create table usersInfo
 (
   userId    int primary key auto_increment,
-  userName  varchar(50),
+  userName  varchar(50) ,
   password  varchar(255),
   firstName varchar(20),
   lastName  varchar(20),
@@ -96,7 +96,7 @@ create table shippingAddress
 
 create table customarOrders
 (
-  orderId    int primary key,
+  orderId    int primary key auto_increment,
   customarId int,
   totalPrice INT,
   foreign key (customarId) references usersInfo (userId)
@@ -202,8 +202,21 @@ begin
   where book_quantity.ISBN = NEW.ISBN
     and book_quantity.nOfCopies >= NEW.quantity;
   if (row_count() = 0) then
-    SET msg = 'NOT Enough Books';
+    SET msg = 'NOT Enough Books '  + ISBN;
     SIGNAL SQLSTATE '45000' set message_text = msg;
   end if;
 END $$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER afterRemove
+    after delete
+    on shoppingCart
+    for each row
+begin
+  update book_quantity
+  set book_quantity.nOfCopies = book_quantity.nOfCopies + OLD.quantity
+  where book_quantity.ISBN = OLD.ISBN;
+END;
 DELIMITER ;

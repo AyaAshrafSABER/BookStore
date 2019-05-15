@@ -6,10 +6,7 @@ import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import Model.User;
 import javafx.collections.FXCollections;
@@ -40,7 +37,7 @@ public class AddBookController {
     @FXML
     private TextField publisherName;
     @FXML
-    private ComboBox<String> allPublisher;
+    private ComboBox<String> allPublishers;
     @FXML
     private ComboBox<String> allAuthors;
     @FXML
@@ -69,13 +66,15 @@ public class AddBookController {
     private void getPublishers() {
 
         String query = "{CALL getPublishers()}";
+        publisherList = new ArrayList<>();
+        publisherMap = new HashMap<>();
         try {
             ResultSet set = connect.getDataProcedure(connect.getConnection().prepareCall(query));
             while (set.next()) {
                 publisherMap.put(set.getString(2), set.getInt(1));
                 publisherList.add(set.getString(2));
             }
-            allPublisher.setItems(FXCollections.observableArrayList(publisherList));
+            allPublishers.setItems(FXCollections.observableArrayList(publisherList));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,6 +85,8 @@ public class AddBookController {
 
     private void getAuthors() {
         String query = "{CALL getAuthors()}";
+        authorsList = new ArrayList<>();
+        authorsMap = new HashMap<>();
         try {
             ResultSet set = connect.getDataProcedure(connect.getConnection().prepareCall(query));
             while (set.next()) {
@@ -116,12 +117,12 @@ public class AddBookController {
 
             CallableStatement statement = connect.getConnection().prepareCall(query);
             statement.setString(1, Title.getText());
-            int publisherId = publisherMap.get(allPublisher.getSelectionModel().getSelectedItem());
+            int publisherId = publisherMap.get(allPublishers.getSelectionModel().getSelectedItem());
             statement.setInt(2, publisherId);
-            statement.setInt(4, Integer.parseInt(publicationYear.getText()));
-            statement.setInt(5, Integer.parseInt(Price.getText()));
-            statement.setString(6, category.getSelectionModel().getSelectedItem());
-            statement.setInt(7, Integer.parseInt(threshold.getText()));
+            statement.setInt(3, Integer.parseInt(publicationYear.getText()));
+            statement.setInt(4, Integer.parseInt(Price.getText()));
+            statement.setString(5, category.getSelectionModel().getSelectedItem());
+            statement.setInt(6, Integer.parseInt(threshold.getText()));
             statement.setInt(7, Integer.parseInt(copies.getText()));
             ResultSet set = statement.executeQuery();
             int bookId = -1;
@@ -131,7 +132,8 @@ public class AddBookController {
                 CallableStatement statement2 = connect.getConnection().prepareCall(authorquery);
                 for (String s : allAuthors.getItems()) {
                     statement2.setInt(1, bookId);
-                    statement2.setString(2, s);
+                    int authorId = authorsMap.get(s);
+                    statement2.setInt(2, authorId);
                     ResultSet set2 = statement2.executeQuery();
                 }
             }

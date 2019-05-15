@@ -74,7 +74,7 @@ public class BookController {
         publicationYear.setText(book.getpYear());
         price.setText(String.valueOf(book.getPrice()));
         category.setText(book.getCategory());
-        availableQuantity.setText(String.valueOf(book.getQuantity()));
+        availableQuantity.setText(String.valueOf(book.getnOfCopies()));
     }
 
     public void addToCart() {

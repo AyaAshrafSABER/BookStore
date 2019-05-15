@@ -106,14 +106,12 @@ public class ShoppingCartController {
             }
 
             connect.getConnection().commit();
-            User.getUser().emptyShoppingCart();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../View/CheckoutView.fxml"));
             Parent tableViewParent = loader.load();
-
             CheckOutController controller = loader.getController();
-
-            controller.initData(User.getUser().getTotalPriceCart(), orderNumber);
+            int price = User.getUser().getTotalPriceCart();
+            controller.initData(price, orderNumber);
             Scene tableViewScene = new Scene(tableViewParent);
             Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             window.setScene(tableViewScene);
