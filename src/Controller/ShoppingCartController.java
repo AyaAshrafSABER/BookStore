@@ -117,6 +117,8 @@ public class ShoppingCartController {
             window.setScene(tableViewScene);
             window.show();
         } catch (SQLException e) {
+            AlertBox alertBox = new AlertBox();
+            alertBox.display("SQL EXCEPTION" , e.getMessage());
             try {
                 connect.getConnection().rollback();
             } catch (SQLException ex) {

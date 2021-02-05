@@ -19,7 +19,7 @@ public class Report {
 
     public void totalSales () {
         String reportSource =  System.getProperty("user.dir") +"/report/TotalSales.jrxml";
-        String reportDest = System.getProperty("user.dir")+"/src/report/TotalSales.html";
+        String reportDest = System.getProperty("user.dir")+"/report/TotalSales.pdf";
 
         Map<String, Object> params = new HashMap<>();
 
@@ -45,7 +45,7 @@ public class Report {
     public void getTop5Customer() {
         String reportSource =  System.getProperty("user.dir") + "/report/Top5Customer.jrxml";
         System.out.println(reportSource);
-        String reportDest = System.getProperty("user.dir") +"/report/Top5Customer.html";
+        String reportDest = System.getProperty("user.dir") +"/report/Top5Customer.pdf";
 
         Map<String, Object> params = new HashMap<String, Object>();
 
@@ -68,7 +68,7 @@ public class Report {
 
     public void getTop10Books() {
         String reportSource =  System.getProperty("user.dir") +"/report/Top10SellingBook.jrxml";
-        String reportDest = System.getProperty("user.dir") +"/src/report/Top10SellingBook.html";
+        String reportDest = System.getProperty("user.dir") +"/report/Top10SellingBook.pdf";
 
         Map<String, Object> params = new HashMap<String, Object>();
 

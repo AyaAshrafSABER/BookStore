@@ -95,6 +95,8 @@ public class ManagerController {
 
         Report report = new Report();
         report.getTop10Books();
+        report.getTop5Customer();
+        report.totalSales();
 
     }
 }

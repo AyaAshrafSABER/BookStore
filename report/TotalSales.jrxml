@@ -16,16 +16,10 @@
 		</conditionalStyle>
 	</style>
 	<queryString language="SQL">
-		<![CDATA[select  title as Title , SUM(quantity)as quintity from shoppingCart join book b on shoppingCart.ISBN = b.ISBN
-where datediff(date,current_date()) > 0
-group by shoppingCart.ISBN, title;]]>
+		<![CDATA[select SUM(quantity*price) as totalPrice from shoppingCart where DATEDIFF(date,CURDATE()) > 0;]]>
 	</queryString>
-	<field name="TITLE" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="TITLE"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="books"/>
-	</field>
-	<field name="quintity" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="quintity"/>
+	<field name="totalPrice" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="totalPrice"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -34,7 +28,7 @@ group by shoppingCart.ISBN, title;]]>
 		<band height="132" splitType="Stretch">
 			<image>
 				<reportElement x="456" y="0" width="99" height="132" uuid="2df35aa2-b4df-4161-8fff-05efa8491c37"/>
-				<imageExpression><![CDATA["jasperReports/cherry.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
 			</image>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="c184e442-3205-4ce0-b699-06179fcd729f"/>
@@ -71,22 +65,13 @@ group by shoppingCart.ISBN, title;]]>
 	<columnHeader>
 		<band height="26" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="0" y="7" width="185" height="18" forecolor="#000000" uuid="06e2a2ff-6ea2-4ac7-852e-2005e193444b">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="daf4dbee-655f-4ad4-ac32-c60e357c8874"/>
-				</reportElement>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Book]]></text>
-			</staticText>
-			<staticText>
 				<reportElement style="Column header" x="185" y="7" width="185" height="18" forecolor="#000000" uuid="e6c1ea21-7eac-42b8-900a-9f4f1c92f9d8">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="089ddd16-5acf-41b8-a3e0-06746f2d398f"/>
 				</reportElement>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[quintity]]></text>
+				<text><![CDATA[totalPrice]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -95,22 +80,13 @@ group by shoppingCart.ISBN, title;]]>
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="c201e2b1-019f-4152-9cb3-c9b98375e034"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="185" height="18" uuid="9b99128f-9a65-4436-b4e3-fe490f9d19fe">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="daf4dbee-655f-4ad4-ac32-c60e357c8874"/>
-					</reportElement>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{TITLE}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="185" y="0" width="185" height="18" uuid="9f3e492a-153c-4440-8994-211acf62ba4b">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="089ddd16-5acf-41b8-a3e0-06746f2d398f"/>
 					</reportElement>
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{quintity}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{totalPrice}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

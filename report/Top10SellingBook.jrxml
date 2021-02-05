@@ -14,7 +14,7 @@
 		</conditionalStyle>
 	</style>
 	<queryString language="SQL">
-		<![CDATA[select  b.title as title, SUM(shoppingCart.quantity) as quintity
+		<![CDATA[select  b.title as title, SUM(shoppingCart.quantity) as quantity
 		from shoppingCart join book b on shoppingCart.ISBN = b.ISBN
 		where DATEDIFF(date,CURRENT_DATE()) > 0
 		group by shoppingCart.ISBN
@@ -34,7 +34,7 @@
 		<band height="132" splitType="Stretch">
 			<image>
 				<reportElement x="456" y="0" width="99" height="132" uuid="c8681c83-66ba-448a-8cbb-3d1ada34ae65"/>
-				<imageExpression><![CDATA["jasperReports/cherry.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
 			</image>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="0aeecc6c-db4b-4ccc-bdb9-236d315ee461"/>

@@ -15,5 +15,5 @@ select shoppingCart.ISBN , title , SUM(quantity) from shoppingCart join book b o
 where datediff(date,current_date()) > 0
 group by shoppingCart.ISBN, title;
 
-select SUM(quantity) from shoppingCart
+select SUM(quantity*price) from shoppingCart
 where DATEDIFF(date,CURDATE()) > 0;
